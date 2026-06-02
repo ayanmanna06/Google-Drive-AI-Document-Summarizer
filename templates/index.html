@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Google Drive AI Document Summarizer</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            background:#f4f7fb;
+        }
+
+        .navbar{
+            background:linear-gradient(135deg,#2563eb,#1e40af);
+            color:white;
+            padding:20px 40px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            box-shadow:0 4px 15px rgba(0,0,0,.15);
+        }
+
+        .navbar h2{
+            font-size:24px;
+        }
+
+        .container{
+            max-width:1400px;
+            margin:auto;
+            padding:30px;
+        }
+
+        .hero{
+            background:white;
+            padding:30px;
+            border-radius:20px;
+            margin-bottom:30px;
+            box-shadow:0 5px 20px rgba(0,0,0,.08);
+        }
+
+        .hero h1{
+            color:#1f2937;
+            margin-bottom:10px;
+        }
+
+        .hero p{
+            color:#6b7280;
+        }
+
+        .stats{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:20px;
+            margin-bottom:30px;
+        }
+
+        .stat-card{
+            background:white;
+            border-radius:20px;
+            padding:25px;
+            box-shadow:0 5px 15px rgba(0,0,0,.08);
+            transition:.3s;
+        }
+
+        .stat-card:hover{
+            transform:translateY(-5px);
+        }
+
+        .stat-card h2{
+            font-size:35px;
+            color:#2563eb;
+        }
+
+        .stat-card p{
+            color:#6b7280;
+            margin-top:5px;
+        }
+
+        .section-title{
+            font-size:24px;
+            margin-bottom:20px;
+            color:#1f2937;
+        }
+
+        .summary-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(450px,1fr));
+            gap:20px;
+        }
+
+        .summary-card{
+            background:white;
+            border-radius:20px;
+            padding:25px;
+            box-shadow:0 5px 15px rgba(0,0,0,.08);
+            transition:.3s;
+        }
+
+        .summary-card:hover{
+            transform:translateY(-5px);
+        }
+
+        .file-name{
+            color:#2563eb;
+            font-size:18px;
+            font-weight:600;
+            margin-bottom:15px;
+        }
+
+        .summary-text{
+            color:#374151;
+            line-height:1.8;
+        }
+
+        .badge{
+            display:inline-block;
+            background:#dcfce7;
+            color:#15803d;
+            padding:5px 12px;
+            border-radius:20px;
+            font-size:12px;
+            margin-bottom:10px;
+        }
+
+        .download-btn{
+            background:#2563eb;
+            color:white;
+            text-decoration:none;
+            padding:12px 25px;
+            border-radius:10px;
+            display:inline-block;
+            margin-top:15px;
+            transition:.3s;
+        }
+
+        .download-btn:hover{
+            background:#1d4ed8;
+        }
+
+        footer{
+            margin-top:40px;
+            text-align:center;
+            color:#6b7280;
+            padding:20px;
+        }
+
+        @media(max-width:768px){
+
+            .summary-grid{
+                grid-template-columns:1fr;
+            }
+
+            .navbar{
+                flex-direction:column;
+                gap:10px;
+                text-align:center;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <h2> AI Document Summarizer</h2>
+
+    <span>
+        Google Drive + Gemini 2.5 Flash
+    </span>
+
+</div>
+
+<div class="container">
+
+    <div class="hero">
+
+        <h1>
+            Google Drive Document Summarization Dashboard
+        </h1>
+
+        <p>
+            Automatically fetch documents from Google Drive,
+            extract content and generate AI-powered summaries.
+        </p>
+
+        <a href="/download-report" class="download-btn">
+            Download CSV Report
+        </a>
+
+    </div>
+
+    <div class="stats">
+
+        <div class="stat-card">
+            <h2>{{ results|length }}</h2>
+            <p>Total Documents</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>Gemini</h2>
+            <p>AI Summarization Engine</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>Drive</h2>
+            <p>Connected Successfully</p>
+        </div>
+
+    </div>
+
+    <h2 class="section-title">
+        Generated Summaries
+    </h2>
+
+    <div class="summary-grid">
+
+        {% for item in results %}
+
+        <div class="summary-card">
+
+            <span class="badge">
+                Processed Successfully
+            </span>
+
+            <div class="file-name">
+                {{ item.file_name }}
+            </div>
+
+            <div class="summary-text">
+                {{ item.summary }}
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<footer>
+
+    © 2026 Google Drive AI Document Summarizer
+
+</footer>
+
+</body>
+</html>
